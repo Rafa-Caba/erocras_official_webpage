@@ -2,16 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PaginaIndex from './components/admin/PaginaIndex';
+import PaginaMiembros from './components/PaginaMiembros';
+import PaginaMisa from './components/PaginaMisa';
+import PaginaNosotros from './components/PaginaNosotros';
+import PaginaContacto from './components/PaginaContacto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        { /* Rutas publicas de EroCras Page */ }
+        <Route path="/" element={<App />} />
+        <Route path="/miembros" element={<PaginaMiembros />} />
+        <Route path="/misa_erocras" element={<PaginaMisa />} />
+        <Route path="/nosotros" element={<PaginaNosotros />} />
+        <Route path="/contacto" element={<PaginaContacto />} />
+
+        { /* Rutas que seran Privadas del Panel de Control */ }
+        <Route path="/admin" element={<PaginaIndex />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
